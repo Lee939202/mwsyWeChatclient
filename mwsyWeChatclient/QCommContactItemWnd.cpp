@@ -28,7 +28,7 @@ QCommContactItemWnd::QCommContactItemWnd(QWidget* p, const char* headUrl, const 
 	m_hLayout->addWidget(m_name);
 
 	//
-	QString imgurl = QString("http://127.0.0.1:8080/UploadDemo/img/%1.png").arg(friendid);
+	QString imgurl = QString("http://49.232.169.205:8080/UploadDemo/img/%1.png").arg(friendid);
 	m_networkMgr = new QNetworkAccessManager();
 	connect(m_networkMgr, SIGNAL(finished(QNetworkReply*)),
 		this, SLOT(slot_replyFinished(QNetworkReply*)));

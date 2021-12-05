@@ -15,4 +15,5 @@ private:
 	static QDataManager* m_dataManager;
 public:
 	QUserId2HeadImgMap m_UserId2HeadImgMap;
+	int64_t m_userid = -1;
 };

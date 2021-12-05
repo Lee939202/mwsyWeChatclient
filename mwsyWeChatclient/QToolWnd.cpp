@@ -1,5 +1,6 @@
 #include "QToolWnd.h"
 #include "QMainWnd.h"
+#include "QDataManager.h"
 
 QToolWnd::QToolWnd(QWidget* p /*= nullptr*/)
 	: QWidget(p)
@@ -48,7 +49,7 @@ QToolWnd::QToolWnd(QWidget* p /*= nullptr*/)
 	m_pictureToolWnd->hide();
 
 	//m_networkMgr = new QNetworkAccessManager();
-	//QString imgurl = QString("http://127.0.0.1:8080/UploadDemo/img/%1.png").arg(QMainWnd::getSinletonInstance()->m_userid);
+	//QString imgurl = QString("http://49.232.169.205:8080/UploadDemo/img/%1.png").arg(QMainWnd::getSinletonInstance()->m_userid);
 	//connect(m_networkMgr, SIGNAL(finished(QNetworkReply*)),this, SLOT(slot_replyFinished(QNetworkReply*)));
 	//m_networkMgr->get(QNetworkRequest(QUrl(imgurl)));
 
@@ -85,6 +86,7 @@ void QToolWnd::slot_onClickHeadUrlLabel()
 		QRect swRect = m_userInfoWnd->geometry();
 		swRect.setX(gPoint.x() + m_headUrlLabel->width() / 2);
 		swRect.setY(gPoint.y() + m_headUrlLabel->height() / 2);
+		m_userInfoWnd->m_headLabel->setPixmap(QDataManager::getInstance()->m_UserId2HeadImgMap[QDataManager::getInstance()->m_userid]);
 		m_userInfoWnd->setGeometry(swRect);
 		m_userInfoWnd->show();
 	}

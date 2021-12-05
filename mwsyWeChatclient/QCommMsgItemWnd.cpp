@@ -30,11 +30,13 @@ QCommMsgItemWnd::QCommMsgItemWnd(QWidget* p,const char*  headUrl, const char* na
 	m_headurl->setFixedSize(40, 40);
 	m_headurl->setPixmap(QPixmap(headUrl));
 
+	m_hLayout->addSpacing(10);
 	m_hLayout->addWidget(m_headurl);
+	m_hLayout->addSpacing(15);
 	m_hLayout->addLayout(m_vLayout);
 
-	m_vLayout->setContentsMargins(5, 0, 0, 0);
-	m_vLayout->setSpacing(0);
+	//m_vLayout->setContentsMargins(0, 0, 0, 0);
+	//m_vLayout->setSpacing(0);
 
 	m_hLayout->setContentsMargins(0, 0, 0, 0);
 	m_hLayout->setSpacing(0);
@@ -43,7 +45,7 @@ QCommMsgItemWnd::QCommMsgItemWnd(QWidget* p,const char*  headUrl, const char* na
 	setFixedHeight(65);
 
 	//
-	QString imgurl = QString("http://127.0.0.1:8080/UploadDemo/img/%1.png").arg(userid);
+	QString imgurl = QString("http://49.232.169.205:8080/UploadDemo/img/%1.png").arg(userid);
 	m_networkMgr = new QNetworkAccessManager();
 	connect(m_networkMgr, SIGNAL(finished(QNetworkReply*)),
 		this, SLOT(slot_replyFinished(QNetworkReply*)));

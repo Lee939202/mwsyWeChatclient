@@ -50,7 +50,8 @@ QSelectWnd1::QSelectWnd1(QWidget* p)
 void QSelectWnd1::slot_addContactsOrGroupBtnClick()
 {
 	if (m_findFriendOrGroupWnd != nullptr) {
-		m_findFriendOrGroupWnd->show();
+		m_findFriendOrGroupWnd->showNormal();
+		m_findFriendOrGroupWnd->activateWindow();
 	}
 }
 

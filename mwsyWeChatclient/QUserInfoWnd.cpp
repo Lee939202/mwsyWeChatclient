@@ -2,6 +2,8 @@
 #include "QSimpleSplit.h"
 #include <QApplication>
 #include <QPixmap>
+#include "QDataManager.h"
+#include "QMainWnd.h"
 
 QUserInfoWnd::QUserInfoWnd(QWidget* p /*= nullptr*/) : QWidget(p)
 {
@@ -30,8 +32,8 @@ QUserInfoWnd::QUserInfoWnd(QWidget* p /*= nullptr*/) : QWidget(p)
 	ft.setPointSize(12);
 	m_userIdLabel->setFont(ft);
 
-	m_usernameLabel->setText("°×ÒÂ¹Á¾Æ");
-	m_userIdLabel->setText("Î¢ÐÅºÅ:88888888888888");
+	m_usernameLabel->setText("xxxxxx");
+	m_userIdLabel->setText("Î¢ÐÅºÅ:xxxxxx");
 
 	m_vLayout1->addWidget(m_usernameLabel);
 	m_vLayout1->addWidget(m_userIdLabel);
@@ -41,11 +43,16 @@ QUserInfoWnd::QUserInfoWnd(QWidget* p /*= nullptr*/) : QWidget(p)
 
 	m_headLabel = new QLabel(this);
 	m_headLabel->setFixedSize(40, 40);
+
 	m_headLabel->setPixmap(QPixmap("./img/head2.png"));
+	//int64_t userid = QMainWnd::getSinletonInstance()->m_userid;
+	//QPixmap pixmap = QDataManager::getInstance()->m_UserId2HeadImgMap[userid];
+	//m_headLabel->setPixmap(pixmap);
 
 	m_changeHeadImgBtn = new QPushButton();
 	m_changeHeadImgBtn->setText("ÐÞ¸ÄÍ·Ïñ");
 	m_changeHeadImgBtn->setFixedWidth(50);
+	m_changeHeadImgBtn->setStyleSheet("background-color:#1aad19;");
 
 
 	m_vLayout2->addWidget(m_headLabel);

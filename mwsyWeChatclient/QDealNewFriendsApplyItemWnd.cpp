@@ -38,6 +38,7 @@ QDealNewFriendsApplyItemWnd::QDealNewFriendsApplyItemWnd(QWidget* p /*= nullptr*
 
 	m_hLayout->addSpacing(50);
 	m_hLayout->addWidget(m_headurl);
+	m_hLayout->addSpacing(25);
 	m_hLayout->addLayout(m_vLayout);
 	m_hLayout->addStretch();
 	m_hLayout->addWidget(m_AgreeBtn);

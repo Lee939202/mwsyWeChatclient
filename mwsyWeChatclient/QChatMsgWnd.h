@@ -23,7 +23,7 @@ public:
 
 public:
 	//构造函数
-	QChatMsgWnd(QWidget* p = nullptr);
+	QChatMsgWnd(QWidget* p = nullptr,int64_t sendid = 0, int64_t recvid = 0);
 
 	//根据str调整各个框的大小
 	QSize fontRect(QString str);
@@ -37,6 +37,9 @@ protected:
 	void paintEvent(QPaintEvent* event);
 
 public:
+	int64_t m_sendid;
+	int64_t m_recvid;
+
 	QString m_msg;
 	QString m_time;
 	QString m_curTime;

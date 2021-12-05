@@ -14,6 +14,6 @@ QSimpleSplit::QSimpleSplit(QWidget* p /*= nullptr*/, QSimpleSplit_direction d/* 
 		setFixedWidth(1);
 	}
 	//设置分割线的颜色
-	setStyleSheet("background-color:gray;border:none");
+	setStyleSheet("background-color:#909090;border:none");
 }
 

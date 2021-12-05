@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include "QChatMsgWnd.h"
+#include "QDataManager.h"
 
 QMainWnd* QMainWnd::m_mainWnd = nullptr;
 
@@ -151,6 +152,18 @@ void QMainWnd::cs_msg_sendmsg(neb::CJsonObject& msg)
 		return;
 	}
 
+	int64_t sendid = -1;
+	if (!msg["data"].Get("sendid", sendid))
+	{
+		return;
+	}
+
+	int64_t recvid = -1;
+	if (!msg["data"].Get("sendid", recvid))
+	{
+		return;
+	}
+
 	//查找对应的会话
 	QSessionWnd* ses = nullptr;
 	int count = m_sLayout2->count();
@@ -172,7 +185,7 @@ void QMainWnd::cs_msg_sendmsg(neb::CJsonObject& msg)
 	{
 		//向会话中嵌入一条数据；
 		QString time = QString::number(QDateTime::currentDateTime().toTime_t());
-		QChatMsgWnd* msgWnd = new QChatMsgWnd(ses->m_MsgWndList);
+		QChatMsgWnd* msgWnd = new QChatMsgWnd(ses->m_MsgWndList,sendid,recvid);
 		QListWidgetItem* msgItem = new QListWidgetItem(ses->m_MsgWndList);
 		msgWnd->setFixedWidth(640);
 		QSize msgSize = msgWnd->fontRect(msgtext.c_str());
@@ -186,7 +199,7 @@ void QMainWnd::cs_msg_sendmsg(neb::CJsonObject& msg)
 
 void QMainWnd::requestHeadImg()
 {
-	QString imgurl = QString("http://127.0.0.1:8080/UploadDemo/img/%1.png").arg(m_userid);
+	QString imgurl = QString("http://49.232.169.205:8080/UploadDemo/img/%1.png").arg(m_userid);
 	m_networkMgr->get(QNetworkRequest(QUrl(imgurl)));
 }
 
@@ -515,6 +528,7 @@ void QMainWnd::slot_replyFinished(QNetworkReply* reply)
 		pixmap.loadFromData(reply->readAll());
 		pixmap = pixmap.scaled(40, 40);
 		m_toolWnd->m_headImg = pixmap;
+		QDataManager::getInstance()->m_UserId2HeadImgMap[m_userid] = m_toolWnd->m_headImg;
 	    m_toolWnd->m_headUrlLabel->setPixmap(m_toolWnd->m_headImg);
 	}
 }

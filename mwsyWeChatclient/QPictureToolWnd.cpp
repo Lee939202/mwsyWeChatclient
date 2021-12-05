@@ -76,7 +76,7 @@ void QPictureToolWnd::slot_determineBtnClicked()
 
 	QNetworkAccessManager* pManager = new QNetworkAccessManager(this);
 	QNetworkRequest request;
-	request.setUrl(QUrl("http://127.0.0.1:8080/UploadDemo/UploadServlet"));
+	request.setUrl(QUrl("http://49.232.169.205:8080/UploadDemo/UploadServlet"));
 	QHttpMultiPart* multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType, this);
 	QHttpPart part;
 	part.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"headimg\";filename=\"%1.png\"").arg(QMainWnd::getSinletonInstance()->m_userid));

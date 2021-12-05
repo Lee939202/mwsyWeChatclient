@@ -21,12 +21,9 @@ QSessionWnd::QSessionWnd(QWidget* p /*= nullptr*/)
 
 	setMinimumSize(640,600);
 	setWindowTitle("会话窗口");
-	//setStyleSheet("background-color:white;");
-	//setStyleSheet("border-left:0px");
 
 
 	m_vLayout = new QVBoxLayout(this);
-
 	m_vLayout->setContentsMargins(0, 0, 0, 0);
 	m_vLayout->setSpacing(0);
 
@@ -223,7 +220,7 @@ void QSessionWnd::onSendTextBtnClick()
 			//QMessageBox::information(nullptr, "info", msg.ToString().c_str());
 			//向远端发送消息
 			QString time = QString::number(QDateTime::currentDateTime().toTime_t());
-			QChatMsgWnd* msgWnd = new QChatMsgWnd(m_MsgWndList);
+			QChatMsgWnd* msgWnd = new QChatMsgWnd(m_MsgWndList, QMainWnd::getSinletonInstance()->m_userid,m_recvId);
 			QListWidgetItem* msgItem = new QListWidgetItem(m_MsgWndList);
 			msgWnd->setFixedWidth(this->width());
 			QSize msgSize = msgWnd->fontRect(msgText);

@@ -5,6 +5,8 @@
 #include <QDebug>
 #include "QWSClientMgr.h"
 #include <QMessageBox>
+#include "QMainWnd.h"
+#include "QDataManager.h"
 
 
 #include "./json/CJsonObject.hpp"
@@ -184,11 +186,12 @@ void QLoginAndRegWnd::slot_regOrLoginBtn()
 					return;
 				}
 
-				std::string titleStr = "error";
+				std::string infoStr = "×¢²áÊ§°Ü";
 				if (state == 0) {
-					titleStr = "info";
+					infoStr = "×¢²á³É¹¦";
 				}
-				//QMessageBox::information(nullptr, titleStr.c_str(), msg["data"].ToString().c_str());
+
+				QMessageBox::information(nullptr, "info", infoStr.c_str());
 			});
 		return;
 	}
@@ -245,7 +248,8 @@ void QLoginAndRegWnd::slot_regOrLoginBtn()
 				m_mainWnd->requestFriendList();
 				m_mainWnd->requestSessionList();
 				m_mainWnd->show();
-				close();
+				QDataManager::getInstance()->m_userid = userid;
+				this->hide();
 			}
 		});
 	}

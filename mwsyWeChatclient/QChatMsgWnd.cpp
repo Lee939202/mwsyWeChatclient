@@ -6,8 +6,8 @@
 #include "QMainWnd.h"
 #include "QDataManager.h"
 
-QChatMsgWnd::QChatMsgWnd(QWidget* p /*= nullptr*/)
-	: QWidget(p)
+QChatMsgWnd::QChatMsgWnd(QWidget* p /*= nullptr*/,int64_t sendid,int64_t recvid)
+	: QWidget(p),m_recvid(recvid),m_sendid(sendid)
 {
 	//设置窗体的字体大小
 	QFont font = this->font();
@@ -31,7 +31,8 @@ QChatMsgWnd::QChatMsgWnd(QWidget* p /*= nullptr*/)
 	//关闭自动填充窗口背景
 	m_loadingLable->setAutoFillBackground(false);
 	//setFixedWidth(600);
-	setStyleSheet("border:2px solid red;");
+	//setStyleSheet("border:1px solid red;");
+	setAttribute(Qt::WA_StyledBackground);
 }
 
 QSize QChatMsgWnd::fontRect(QString str)
@@ -173,8 +174,10 @@ void QChatMsgWnd::paintEvent(QPaintEvent* event)
 	if (m_chatMsgType == ChatMsgTypeEnum::ChatMsg_Owner) {
 		//绘制玩家头像
 
-		//m_leftPixmap = QDataManager::getInstance()->m_UserId2HeadImgMap[QMainWnd::getSinletonInstance()->m_userid];
-		//m_leftPixmap = m_leftPixmap.scaled(30, 30);
+		//m_leftPixmap = QMainWnd::getSinletonInstance()->m_toolWnd->m_headImg;
+		m_leftPixmap = QDataManager::getInstance()->m_UserId2HeadImgMap[m_sendid];
+		m_leftPixmap = m_leftPixmap.scaled(30, 30);
+		//m_leftPixmap = m_rightPixmap;
 		painter.drawPixmap(m_iconLeftRect, m_leftPixmap);
 		//绘制外部边框
 		QColor color = QColor(158, 234, 106);
@@ -207,6 +210,9 @@ void QChatMsgWnd::paintEvent(QPaintEvent* event)
 	}
 
 	if (m_chatMsgType == ChatMsgTypeEnum::ChatMsg_Other) {
+
+		m_rightPixmap = QDataManager::getInstance()->m_UserId2HeadImgMap[m_recvid];
+		m_rightPixmap = m_rightPixmap.scaled(30, 30);
 
 		//绘制玩家头像
 		painter.drawPixmap(m_iconRightRect, m_rightPixmap);
