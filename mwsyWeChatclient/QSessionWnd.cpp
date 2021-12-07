@@ -34,6 +34,8 @@ QSessionWnd::QSessionWnd(QWidget* p /*= nullptr*/)
 	m_sendTextEdit = new QTextEdit(this);
 	m_sendTextEdit->setStyleSheet("border:0px");
 
+	m_sesToolBar = new QSessionToolBar();
+
 	m_sendTextBtn = new QPushButton(this);
 	m_sendTextBtn->setFixedSize(70, 30);
 	m_sendTextBtn->setText("发送(S)");
@@ -55,18 +57,12 @@ QSessionWnd::QSessionWnd(QWidget* p /*= nullptr*/)
 		m_vLayout->addWidget(sp);
 	}
 
+	m_vLayout->addWidget(m_sesToolBar);
 	m_vLayout->addWidget(m_sendTextEdit,1);
-
-	//{
-		/*添加分割线的示例代码*/
-	//	QSimpleSplit* sp = new QSimpleSplit(this);
-	//	m_vLayout->addWidget(sp);
-	//}
 
 	m_hLayout = new QHBoxLayout();
 	m_hLayout->addStretch();
 	m_hLayout->addWidget(m_sendTextBtn);
-	//m_hLayout->addSpacing(30);
 	m_hLayout->setContentsMargins(0, 0, 15,10);
 	m_vLayout->addLayout(m_hLayout);
 
@@ -82,6 +78,7 @@ QSessionWnd::QSessionWnd(QWidget* p /*= nullptr*/)
 	m_MsgWndList->setFocusPolicy(Qt::NoFocus);
 	//按钮点击时候发送消息
 	connect(m_sendTextBtn, SIGNAL(clicked()), this, SLOT(onSendTextBtnClick()));
+	//connect(m_sendTextEdit, SIGNAL(returnPressed()), this, SLOT(onSendTextBtnClick()));
 	//connect(m_MsgWndList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onMsgListItemClicked(QListWidgetItem*)));
 	m_sendTextBtn->setStyleSheet("background-color:#1aad19;border-style: none;");
 

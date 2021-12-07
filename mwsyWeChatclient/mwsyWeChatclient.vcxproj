@@ -90,6 +90,7 @@
     <ClCompile Include="json\CJsonObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="QDataManager.cpp" />
+    <ClCompile Include="QEmoijWnd.cpp" />
     <ClCompile Include="QPictureToolWnd.cpp" />
     <ClCompile Include="QApplyFriendWnd1.cpp" />
     <ClCompile Include="QApplyFriendWnd2.cpp" />
@@ -110,6 +111,7 @@
     <ClCompile Include="QMainWnd.cpp" />
     <ClCompile Include="QNextWnd.cpp" />
     <ClCompile Include="QSelectWnd1.cpp" />
+    <ClCompile Include="QSessionToolBar.cpp" />
     <ClCompile Include="QSessionTopWnd.cpp" />
     <ClCompile Include="QSessionWnd.cpp" />
     <ClCompile Include="QSimpleLabel.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="json\cJSON.h" />
     <ClInclude Include="json\CJsonObject.hpp" />
     <ClInclude Include="QDataManager.h" />
+    <QtMoc Include="QEmoijWnd.h" />
+    <QtMoc Include="QSessionToolBar.h" />
     <QtMoc Include="QSimpleLabel.h" />
     <QtMoc Include="QDealNewFriendsApplyItemWnd.h" />
     <QtMoc Include="QUserInfoWnd.h" />

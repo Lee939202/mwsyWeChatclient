@@ -110,6 +110,12 @@
     <ClCompile Include="QDataManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QSessionToolBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QEmoijWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QWSClientMgr.h">
@@ -188,6 +194,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QCommMsgItemWnd.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QEmoijWnd.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QSessionToolBar.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

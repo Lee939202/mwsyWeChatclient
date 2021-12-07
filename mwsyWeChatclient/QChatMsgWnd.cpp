@@ -171,11 +171,13 @@ void QChatMsgWnd::paintEvent(QPaintEvent* event)
 	painter.setBrush(QBrush(Qt::gray));
 
 
-	if (m_chatMsgType == ChatMsgTypeEnum::ChatMsg_Owner) {
+	if (m_chatMsgType == ChatMsgTypeEnum::ChatMsg_Other) {
 		//绘制玩家头像
 
 		//m_leftPixmap = QMainWnd::getSinletonInstance()->m_toolWnd->m_headImg;
-		m_leftPixmap = QDataManager::getInstance()->m_UserId2HeadImgMap[m_sendid];
+		m_leftPixmap = QDataManager::getInstance()->m_UserId2HeadImgMap[m_recvid];
+
+
 		m_leftPixmap = m_leftPixmap.scaled(30, 30);
 		//m_leftPixmap = m_rightPixmap;
 		painter.drawPixmap(m_iconLeftRect, m_leftPixmap);
@@ -209,9 +211,9 @@ void QChatMsgWnd::paintEvent(QPaintEvent* event)
 		painter.drawText(m_textLeftRect, m_msg, option);
 	}
 
-	if (m_chatMsgType == ChatMsgTypeEnum::ChatMsg_Other) {
+	if (m_chatMsgType == ChatMsgTypeEnum::ChatMsg_Owner) {
 
-		m_rightPixmap = QDataManager::getInstance()->m_UserId2HeadImgMap[m_recvid];
+		m_rightPixmap = QMainWnd::getSinletonInstance()->m_toolWnd->m_headImg;
 		m_rightPixmap = m_rightPixmap.scaled(30, 30);
 
 		//绘制玩家头像

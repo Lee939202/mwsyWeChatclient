@@ -10,6 +10,7 @@
 #include <QListWidget> //窗口列表
 
 #include "QSessionTopWnd.h"
+#include "QSessionToolBar.h"
 
 /*
 * 会话的窗口 sesId作用,右边信息栏的小窗口选项也有一个id，通过id关联彼此信息
@@ -32,6 +33,8 @@ public:
 	QSessionTopWnd* m_sesTopWnd;
 	//窗口列表信息
 	QListWidget* m_MsgWndList;
+	//
+	QSessionToolBar* m_sesToolBar;
 	//需要发送的文字
 	QTextEdit* m_sendTextEdit;
 	//用于发送文字的按钮

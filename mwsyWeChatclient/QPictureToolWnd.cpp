@@ -10,6 +10,7 @@
 #include <QHttpPart>
 #include <QNetworkReply>
 #include "QDataManager.h"
+#include "QSimpleSplit.h"
 
 QPictureToolWnd::QPictureToolWnd(QWidget* p /*= nullptr*/) : QWidget(p)
 {
@@ -20,6 +21,21 @@ QPictureToolWnd::QPictureToolWnd(QWidget* p /*= nullptr*/) : QWidget(p)
 	m_picLable = new QLabel();
 	m_picLable->setFixedSize(350, 350);
 
+	m_hLayout1 = new QHBoxLayout();
+	m_minBtn = new QPushButton(this);
+	m_closeBtn = new QPushButton(this);
+	m_minBtn->setIcon(QPixmap("./img/minWnd.png"));
+	m_minBtn->setIconSize(QSize(20, 20));
+	m_minBtn->setFixedSize(20, 20);
+	m_closeBtn->setIcon(QPixmap("./img/closeWnd.png"));
+	m_closeBtn->setIconSize(QSize(20, 20));
+	m_closeBtn->setFixedSize(20, 20);
+	m_hLayout1->addStretch();
+	m_hLayout1->addWidget(m_minBtn);
+	m_hLayout1->addWidget(m_closeBtn);
+
+
+
 	m_determineBtn = new QPushButton();
 	m_cancelBtn = new QPushButton();
 	m_uploadBtn = new QPushButton();
@@ -28,17 +44,49 @@ QPictureToolWnd::QPictureToolWnd(QWidget* p /*= nullptr*/) : QWidget(p)
 	m_cancelBtn->setText("取消");
 	m_uploadBtn->setText("上传");
 
-	m_hLayout = new QHBoxLayout();
-	m_hLayout->addWidget(m_uploadBtn);
-	m_hLayout->addWidget(m_determineBtn);
-	m_hLayout->addWidget(m_cancelBtn);
+	m_hLayout2 = new QHBoxLayout();
+	m_hLayout2->addWidget(m_uploadBtn);
+	m_hLayout2->addWidget(m_determineBtn);
+	m_hLayout2->addWidget(m_cancelBtn);
 
+	m_vLayout->addLayout(m_hLayout1);
+	{
+		QSimpleSplit* sp = new QSimpleSplit();
+		m_vLayout->addWidget(sp);
+	}
 	m_vLayout->addWidget(m_picLable);
-	m_vLayout->addLayout(m_hLayout);
+	{
+		QSimpleSplit* sp = new QSimpleSplit();
+		m_vLayout->addWidget(sp);
+	}
+	m_vLayout->addLayout(m_hLayout2);
 
 	connect(m_uploadBtn, SIGNAL(clicked()), this, SLOT(slot_uploadBtnClicked()));
 	connect(m_cancelBtn, SIGNAL(clicked()), this, SLOT(slot_cancelBtnClicked()));
 	connect(m_determineBtn, SIGNAL(clicked()), this, SLOT(slot_determineBtnClicked()));
+
+	connect(m_minBtn,SIGNAL(clicked()),this,SLOT(minWnd()));
+	connect(m_closeBtn, SIGNAL(clicked()), this, SLOT(closeWnd()));
+}
+
+void QPictureToolWnd::mouseMoveEvent(QMouseEvent* event)
+{
+	if (m_bPress)
+	{
+		move(event->pos() - m_poPress + pos());
+	}
+}
+
+void QPictureToolWnd::mousePressEvent(QMouseEvent* event)
+{
+	m_bPress = true;
+	m_poPress = event->pos();
+}
+
+void QPictureToolWnd::mouseReleaseEvent(QMouseEvent* event)
+{
+	Q_UNUSED(event);
+	m_bPress = false;
 }
 
 void QPictureToolWnd::slot_uploadBtnClicked()
@@ -119,4 +167,14 @@ void QPictureToolWnd::slot_determineBtnClicked()
 					QDataManager::getInstance()->m_UserId2HeadImgMap[QMainWnd::getSinletonInstance()->m_userid] = QMainWnd::getSinletonInstance()->m_toolWnd->m_pictureToolWnd->m_HeadImg;
 				});
 		});
+}
+
+void QPictureToolWnd::closeWnd()
+{
+	hide();
+}
+
+void QPictureToolWnd::minWnd()
+{
+	showMinimized();
 }

@@ -119,6 +119,7 @@ QLoginAndRegWnd::QLoginAndRegWnd(QWidget* p /*= nullptr*/)
 	connect(m_closeBtn, SIGNAL(clicked()), this, SLOT(slot_closeWnd()));
 	connect(m_regOrLoginChx, SIGNAL(clicked(bool)), this, SLOT(slot_regOrLoginChx(bool)));
 	connect(m_regOrLoginBtn, SIGNAL(clicked()), this, SLOT(slot_regOrLoginBtn()));
+	connect(m_pwdEdit, SIGNAL(returnPressed()), this, SLOT(slot_regOrLoginBtn()));
 }
 
 void QLoginAndRegWnd::mouseMoveEvent(QMouseEvent* event)
