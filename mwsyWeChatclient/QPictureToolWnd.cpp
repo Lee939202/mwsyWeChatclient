@@ -146,9 +146,9 @@ void QPictureToolWnd::slot_determineBtnClicked()
 			QString str = QString(all);
 			qDebug() << str << endl;
 
-			neb::CJsonObject json0;
-			json0.Add("headimg", "/xx/xx/x.png");
-			std::string str0 = json0.ToString();
+			//neb::CJsonObject json0;
+			//json0.Add("headimg", "/xx/xx/x.png");
+			//std::string str0 = json0.ToString();
 
 			neb::CJsonObject json1(str.toStdString());
 			std::string headimgstr = "";

@@ -85,6 +85,7 @@ QSessionWnd::QSessionWnd(QWidget* p /*= nullptr*/)
 	setAttribute(Qt::WA_StyledBackground);
 	setStyleSheet("background-color:white;border:0px");
 
+	connect(m_sesToolBar->m_emoijWnd, SIGNAL(signal_emoijClicked(QString)), this, SLOT(slot_emoijClicked(QString)));
 
 	////设置滚动条的样式
 	m_MsgWndList->verticalScrollBar()->setStyleSheet("QScrollBar:vertical"
@@ -227,4 +228,10 @@ void QSessionWnd::onSendTextBtnClick()
 			//关联项与窗口
 			m_MsgWndList->setItemWidget(msgItem, msgWnd);
 		});
+}
+
+void QSessionWnd::slot_emoijClicked(QString str)
+{
+	QString tempStr = m_sendTextEdit->toPlainText()+str;
+	m_sendTextEdit->setText(tempStr);
 }

@@ -27,6 +27,7 @@ public slots:
 	void closeWnd();
 	void minWnd();
 public:
+	// "./img/default.png"
 	QLabel* m_picLable;
 	QPixmap m_HeadImg;
 	QString m_filePath;

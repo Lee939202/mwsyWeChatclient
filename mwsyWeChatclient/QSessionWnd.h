@@ -26,6 +26,7 @@ public:
 	QSessionWnd(QWidget* p = nullptr);
 public slots:
 	void onSendTextBtnClick();
+	void slot_emoijClicked(QString str);
 public:
 	//窗口布局管理
 	QVBoxLayout *m_vLayout;

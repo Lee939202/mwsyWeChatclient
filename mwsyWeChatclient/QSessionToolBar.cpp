@@ -29,8 +29,6 @@ QSessionToolBar::QSessionToolBar(QWidget* p /*= nullptr*/)
 	m_hLayout->addWidget(m_screenshotBtn);
 
 	m_hLayout->addStretch();
-
-
 	connect(m_emojiBtn, SIGNAL(clicked()), this, SLOT(slot_emojiBtnClick()));
 }
 

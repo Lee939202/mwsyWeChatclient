@@ -116,6 +116,9 @@
     <ClCompile Include="QEmoijWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QChatMsgWnds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QWSClientMgr.h">
@@ -200,6 +203,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="QSessionToolBar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QChatMsgWnds.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

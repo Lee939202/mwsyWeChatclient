@@ -531,5 +531,10 @@ void QMainWnd::slot_replyFinished(QNetworkReply* reply)
 		QDataManager::getInstance()->m_UserId2HeadImgMap[m_userid] = m_toolWnd->m_headImg;
 	    m_toolWnd->m_headUrlLabel->setPixmap(m_toolWnd->m_headImg);
 	}
+	//else
+	//{
+		//请求头像失败，更新玩家头像
+		
+	//}
 }
 

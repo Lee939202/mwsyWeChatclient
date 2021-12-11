@@ -5,6 +5,8 @@
 #include <QDebug>
 #include "QWSClientMgr.h"
 #include <QMessageBox>
+#include <QBuffer>
+#include <QHttpMultiPart>
 #include "QMainWnd.h"
 #include "QDataManager.h"
 
@@ -181,9 +183,15 @@ void QLoginAndRegWnd::slot_regOrLoginBtn()
 		json.Add("nickname", nickname);
 		json.Add("sex", sex);
 
-		QWSClientMgr::getSingletonInstance()->request("cs_msg_register", json, [](neb::CJsonObject& msg) {
+		QWSClientMgr::getSingletonInstance()->request("cs_msg_register", json, [this](neb::CJsonObject& msg) {
 				int state = 0;
 				if (!msg.Get("state",state)) {
+					return;
+				}
+
+				int userId = -1;
+				if (!msg["data"].Get("userId", userId))
+				{
 					return;
 				}
 
@@ -191,6 +199,29 @@ void QLoginAndRegWnd::slot_regOrLoginBtn()
 				if (state == 0) {
 					infoStr = "×¢²á³É¹¦";
 				}
+
+				//QByteArray byteArr;
+				//QBuffer buffer(&byteArr);
+				//buffer.open(QIODevice::WriteOnly);
+				//m_HeadImg.save(&buffer, "png");
+				//QByteArray byteArr2 = byteArr.toBase64();
+				//QString headimgdata(byteArr2);
+
+
+				QNetworkAccessManager* pManager = new QNetworkAccessManager(this);
+				QNetworkRequest request;
+				request.setUrl(QUrl("http://49.232.169.205:8080/UploadDemo/UploadServlet"));
+				QHttpMultiPart* multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType, this);
+				QHttpPart part;
+				part.setHeader(QNetworkRequest::ContentDispositionHeader, QString("form-data;name=\"headimg\";filename=\"%1.png\"").arg(userId));
+				part.setHeader(QNetworkRequest::ContentTypeHeader, "image/png");
+				QFile* file = new QFile("./img/default.png");
+				file->open(QFile::ReadOnly);
+				part.setBodyDevice(file);
+				file->setParent(multiPart);
+				multiPart->append(part);
+				QNetworkReply* reply = pManager->post(request, multiPart);
+
 
 				QMessageBox::information(nullptr, "info", infoStr.c_str());
 			});

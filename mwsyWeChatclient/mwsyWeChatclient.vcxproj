@@ -89,6 +89,7 @@
     <ClCompile Include="json\cJSON.c" />
     <ClCompile Include="json\CJsonObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="QChatMsgWnds.cpp" />
     <ClCompile Include="QDataManager.cpp" />
     <ClCompile Include="QEmoijWnd.cpp" />
     <ClCompile Include="QPictureToolWnd.cpp" />
@@ -168,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="json\cJSON.h" />
     <ClInclude Include="json\CJsonObject.hpp" />
+    <QtMoc Include="QChatMsgWnds.h" />
     <ClInclude Include="QDataManager.h" />
     <QtMoc Include="QEmoijWnd.h" />
     <QtMoc Include="QSessionToolBar.h" />

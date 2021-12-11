@@ -46,9 +46,9 @@ QSize QChatMsgWnd::fontRect(QString str)
 	int iconTMPH = 10;
 	int triangleW = 6;
 	int outerFrameW = 20;
-	int textSpaceRect = 12;
+	int textSpaceRect = 12; //
 
-	int width = this->width();
+	//int width = this->width(); 注释无效变量
 
 	m_outerFrameWidth = this->width() - outerFrameW - 2 * (iconWH + iconTMPH + iconSpaceW);
 	m_textWidth = m_outerFrameWidth - 2 * textSpaceRect;
@@ -57,9 +57,14 @@ QSize QChatMsgWnd::fontRect(QString str)
 
 	m_iconLeftRect = QRect(iconSpaceW, iconTMPH, iconWH, iconWH);
 	m_iconRightRect = QRect(this->width() - iconSpaceW - iconWH, iconTMPH, iconWH, iconWH);
+
+
+
 	QSize msgSize = getRealStringSize(str);
 	qDebug() << "fontRect size = " << msgSize;
+	
 	int height = msgSize.height() > minH ? msgSize.height() : minH;
+
 	qDebug() << "QChatMsgWnd::fontRect height = " << height;
 	m_triangleLeftRect = QRect(iconWH + iconSpaceW + iconRectW, m_lineHeight / 2, 
 		triangleW,5);
@@ -148,7 +153,7 @@ QSize QChatMsgWnd::getRealStringSize(QString str)
  		}
 	}
 
-	return QSize(nMaxWidth + m_spaceWidth, nLineNum * m_lineHeight + 2 * m_lineHeight);
+	return QSize(nMaxWidth + m_spaceWidth, (nLineNum+2)*m_lineHeight);
 }
 
 void QChatMsgWnd::setText(QString text, QString time, QSize allSize, ChatMsgTypeEnum chatMsgType)
@@ -172,25 +177,14 @@ void QChatMsgWnd::paintEvent(QPaintEvent* event)
 
 
 	if (m_chatMsgType == ChatMsgTypeEnum::ChatMsg_Other) {
-		//绘制玩家头像
-
-		//m_leftPixmap = QMainWnd::getSinletonInstance()->m_toolWnd->m_headImg;
 		m_leftPixmap = QDataManager::getInstance()->m_UserId2HeadImgMap[m_recvid];
-
-
 		m_leftPixmap = m_leftPixmap.scaled(30, 30);
-		//m_leftPixmap = m_rightPixmap;
 		painter.drawPixmap(m_iconLeftRect, m_leftPixmap);
 		//绘制外部边框
 		QColor color = QColor(158, 234, 106);
 		painter.setBrush(color);
-		//painter.drawRoundedRect(m_outerFrameLeftRect.x() - 1, m_outerFrameLeftRect.y() - 1,
-			//m_outerFrameLeftRect.width() + 2, m_outerFrameLeftRect.height() + 2, 4, 4);
-
-		//painter.setBrush(Qt::red);
 		painter.drawRoundedRect(m_outerFrameLeftRect, 4, 4);
 
-		//
 		QPointF points[3] = {
 			QPointF(m_triangleLeftRect.x(),25),
 			QPointF(m_triangleLeftRect.x() + m_triangleLeftRect.width(),20),
@@ -198,9 +192,6 @@ void QChatMsgWnd::paintEvent(QPaintEvent* event)
 		};
 
 		painter.drawPolygon(points, 3);
-
-		//painter.setBrush(Qt::red);
-		//painter.drawRoundedRect(m_textLeftRect, 0, 0);
 
 		QPen penText;
 		penText.setColor(QColor(51, 51, 51));
