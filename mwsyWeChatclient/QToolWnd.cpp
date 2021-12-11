@@ -87,6 +87,8 @@ void QToolWnd::slot_onClickHeadUrlLabel()
 		swRect.setX(gPoint.x() + m_headUrlLabel->width() / 2);
 		swRect.setY(gPoint.y() + m_headUrlLabel->height() / 2);
 		m_userInfoWnd->m_headLabel->setPixmap(QDataManager::getInstance()->m_UserId2HeadImgMap[QDataManager::getInstance()->m_userid]);
+		m_userInfoWnd->m_usernameLabel->setText(QDataManager::getInstance()->m_username);
+		m_userInfoWnd->m_userIdLabel->setText("ÓÃ»§id:" + QString::number(QDataManager::getInstance()->m_userid));
 		m_userInfoWnd->setGeometry(swRect);
 		m_userInfoWnd->show();
 	}

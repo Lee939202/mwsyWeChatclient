@@ -281,6 +281,7 @@ void QLoginAndRegWnd::slot_regOrLoginBtn()
 				m_mainWnd->requestSessionList();
 				m_mainWnd->show();
 				QDataManager::getInstance()->m_userid = userid;
+				QDataManager::getInstance()->m_username = username.c_str();
 				this->hide();
 			}
 		});

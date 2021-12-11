@@ -84,7 +84,7 @@ QSize QChatMsgWnd::fontRect(QString str)
 		m_outerFrameLeftRect.setRect(m_triangleLeftRect.x() + m_triangleLeftRect.width(), m_lineHeight / 4 * 3, 
 			m_outerFrameWidth, height-m_lineHeight);
 
-		m_outerFrameRightRect.setRect(iconWH +  + iconSpaceW + iconRectW - triangleW, m_lineHeight / 4 * 3,
+		m_outerFrameRightRect.setRect(m_triangleRightRect.x()-m_outerFrameWidth, m_lineHeight / 4 * 3,
 			m_outerFrameWidth, height-m_lineHeight);
 	}
 

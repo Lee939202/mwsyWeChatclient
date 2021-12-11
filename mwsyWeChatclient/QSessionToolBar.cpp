@@ -1,4 +1,8 @@
 #include "QSessionToolBar.h"
+#include <QAppliCation>
+#include <QPixMap>
+#include <QDesktopWidget>
+#include "QScreenShotWnd.h"
 
 QSessionToolBar::QSessionToolBar(QWidget* p /*= nullptr*/)
 	: QWidget(p)
@@ -30,6 +34,7 @@ QSessionToolBar::QSessionToolBar(QWidget* p /*= nullptr*/)
 
 	m_hLayout->addStretch();
 	connect(m_emojiBtn, SIGNAL(clicked()), this, SLOT(slot_emojiBtnClick()));
+	connect(m_screenshotBtn, SIGNAL(clicked()), this, SLOT(slot_screenshotBtnClick()));
 }
 
 void QSessionToolBar::slot_emojiBtnClick()
@@ -43,4 +48,11 @@ void QSessionToolBar::slot_emojiBtnClick()
 	swRect.setY(gPoint.y() - m_emoijWnd->height());
 	m_emoijWnd->setGeometry(swRect);
 	m_emoijWnd->show();
+}
+
+void QSessionToolBar::slot_screenshotBtnClick()
+{
+	QScreenShotWnd* s = new QScreenShotWnd();
+	s->m_fullScreenPixmap = QPixmap::grabWindow(QApplication::desktop()->winId());
+	s->showFullScreen();
 }

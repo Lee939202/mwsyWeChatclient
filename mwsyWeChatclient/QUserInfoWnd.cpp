@@ -4,11 +4,13 @@
 #include <QPixmap>
 #include "QDataManager.h"
 #include "QMainWnd.h"
+#include <QGraphicsDropShadowEffect>
 
 QUserInfoWnd::QUserInfoWnd(QWidget* p /*= nullptr*/) : QWidget(p)
 {
 	setAttribute(Qt::WA_StyledBackground);
 	setWindowFlags(Qt::FramelessWindowHint);
+	//setAttribute(Qt::WA_TranslucentBackground);
 	setFixedSize(300, 240);
 	setStyleSheet("background:white");
 
@@ -33,7 +35,7 @@ QUserInfoWnd::QUserInfoWnd(QWidget* p /*= nullptr*/) : QWidget(p)
 	m_userIdLabel->setFont(ft);
 
 	m_usernameLabel->setText("xxxxxx");
-	m_userIdLabel->setText("微信号:xxxxxx");
+	m_userIdLabel->setText("用户id:xxxxxx");
 
 	m_vLayout1->addWidget(m_usernameLabel);
 	m_vLayout1->addWidget(m_userIdLabel);
@@ -67,6 +69,17 @@ QUserInfoWnd::QUserInfoWnd(QWidget* p /*= nullptr*/) : QWidget(p)
 	}
 
 	m_vLayout->addStretch();
+
+
+	//实例阴影shadow
+	///QGraphicsDropShadowEffect* shadow = new QGraphicsDropShadowEffect(this);
+	//设置阴影距离
+	//shadow->setOffset(0, 0);
+	//设置阴影颜色
+	//shadow->setColor(Qt::gray);
+	//设置阴影圆角
+	//shadow->setBlurRadius(20);
+	//setGraphicsEffect(shadow);
 }
 
 bool QUserInfoWnd::event(QEvent* event) {

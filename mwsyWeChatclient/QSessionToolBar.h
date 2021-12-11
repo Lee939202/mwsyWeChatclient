@@ -11,6 +11,7 @@ public:
 	QSessionToolBar(QWidget* p = nullptr);
 public slots:
 	void slot_emojiBtnClick();
+	void slot_screenshotBtnClick();
 public:
 	QHBoxLayout* m_hLayout;
 	QPushButton* m_emojiBtn;

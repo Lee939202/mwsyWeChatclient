@@ -194,6 +194,7 @@ void QMainWnd::cs_msg_sendmsg(neb::CJsonObject& msg)
 		msgWnd->setText(msgtext.c_str(), time, msgSize, QChatMsgWnd::ChatMsg_Other);
 		//关联项与窗口
 		ses->m_MsgWndList->setItemWidget(msgItem, msgWnd);
+		ses->m_MsgWndList->scrollToBottom();
 	}
 }
 

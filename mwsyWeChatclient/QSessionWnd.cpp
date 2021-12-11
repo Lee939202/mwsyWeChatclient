@@ -227,6 +227,8 @@ void QSessionWnd::onSendTextBtnClick()
 			msgWnd->setText(msgText, time,msgSize, QChatMsgWnd::ChatMsg_Owner);
 			//关联项与窗口
 			m_MsgWndList->setItemWidget(msgItem, msgWnd);
+			//优化逻辑滑动到底部
+			m_MsgWndList->scrollToBottom();
 		});
 }
 

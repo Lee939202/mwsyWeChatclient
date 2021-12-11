@@ -89,7 +89,6 @@
     <ClCompile Include="json\cJSON.c" />
     <ClCompile Include="json\CJsonObject.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="QChatMsgWnds.cpp" />
     <ClCompile Include="QDataManager.cpp" />
     <ClCompile Include="QEmoijWnd.cpp" />
     <ClCompile Include="QPictureToolWnd.cpp" />
@@ -111,6 +110,7 @@
     <ClCompile Include="QLoginAndRegWnd.cpp" />
     <ClCompile Include="QMainWnd.cpp" />
     <ClCompile Include="QNextWnd.cpp" />
+    <ClCompile Include="QScreenShotWnd.cpp" />
     <ClCompile Include="QSelectWnd1.cpp" />
     <ClCompile Include="QSessionToolBar.cpp" />
     <ClCompile Include="QSessionTopWnd.cpp" />
@@ -169,8 +169,8 @@
   <ItemGroup>
     <ClInclude Include="json\cJSON.h" />
     <ClInclude Include="json\CJsonObject.hpp" />
-    <QtMoc Include="QChatMsgWnds.h" />
     <ClInclude Include="QDataManager.h" />
+    <QtMoc Include="QScreenShotWnd.h" />
     <QtMoc Include="QEmoijWnd.h" />
     <QtMoc Include="QSessionToolBar.h" />
     <QtMoc Include="QSimpleLabel.h" />

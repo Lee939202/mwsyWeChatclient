@@ -16,4 +16,5 @@ private:
 public:
 	QUserId2HeadImgMap m_UserId2HeadImgMap;
 	int64_t m_userid = -1;
+	QString m_username = "";
 };
